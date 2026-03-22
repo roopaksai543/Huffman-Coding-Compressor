@@ -72,5 +72,12 @@ During decompression, the process is reversed. The header is read from the compr
 
 This program is designed for text-based input. It focuses on clarity and correctness over maximum compression ratio. It is implemented as an academic systems project.
 
-Built by **Roopaksai Sivakumar**  
-Computer Engineering @ UC Irvine
+
+<p align="center">
+  <sub>
+    <i>
+      Built by <b>Roopaksai Sivakumar</b><br>
+      Computer Engineering @ UC Irvine
+    </i>
+  </sub>
+</p>

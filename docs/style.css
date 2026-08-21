@@ -1,0 +1,322 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+
+:root {
+  --grad: linear-gradient(135deg, #7c3aed 0%, #c026d3 55%, #db2777 100%);
+  --grad-soft: linear-gradient(135deg, rgba(124, 58, 237, 0.08), rgba(219, 39, 119, 0.08));
+  --ink: #241a33;
+  --ink-soft: #6b5c7d;
+  --surface: #ffffff;
+  --surface-soft: #faf6fc;
+  --border: #e8def0;
+  --shadow-color: rgba(124, 58, 237, 0.25);
+  --radius-lg: 18px;
+  --radius-md: 12px;
+  --radius-sm: 8px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  min-height: 100%;
+  background: var(--grad);
+  background-attachment: fixed;
+}
+
+body {
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  max-width: 640px;
+  margin: 3rem auto;
+  padding: 2.5rem;
+  background: var(--surface);
+  border-radius: var(--radius-lg);
+  box-shadow: 0 24px 60px -15px var(--shadow-color), 0 4px 12px rgba(36, 26, 51, 0.06);
+  color: var(--ink);
+  line-height: 1.5;
+}
+
+h1 {
+  font-size: 1.75rem;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  margin: 0 0 1.75rem 0;
+  background: var(--grad);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* ---- inputs ---- */
+
+input[type="file"] {
+  display: block;
+  width: 100%;
+  font: inherit;
+  font-size: 0.9rem;
+  color: var(--ink-soft);
+  padding: 0.65rem 0.75rem;
+  border: 1.5px dashed var(--border);
+  border-radius: var(--radius-md);
+  background: var(--surface-soft);
+  margin-bottom: 0.85rem;
+}
+
+input[type="file"]::file-selector-button {
+  font: inherit;
+  font-weight: 600;
+  font-size: 0.85rem;
+  color: #fff;
+  padding: 0.5rem 1rem;
+  margin-right: 0.85rem;
+  border: none;
+  border-radius: 999px;
+  background: var(--grad);
+  cursor: pointer;
+  transition: opacity 0.15s ease;
+}
+
+input[type="file"]::file-selector-button:hover {
+  opacity: 0.9;
+}
+
+#filenameLabel {
+  color: var(--ink-soft);
+  font-size: 0.85rem;
+  margin: 0 0 1.25rem 0;
+  min-height: 1.2em;
+}
+
+/* ---- buttons ---- */
+
+button {
+  font: inherit;
+  font-weight: 600;
+  font-size: 0.9rem;
+  color: #fff;
+  padding: 0.65rem 1.35rem;
+  margin: 0 0.6rem 0.6rem 0;
+  border: none;
+  border-radius: 999px;
+  background: var(--grad);
+  cursor: pointer;
+  box-shadow: 0 6px 16px -4px var(--shadow-color);
+  transition: transform 0.15s ease, box-shadow 0.15s ease, opacity 0.15s ease;
+}
+
+button:hover:not(:disabled) {
+  transform: translateY(-1px);
+  box-shadow: 0 10px 20px -6px var(--shadow-color);
+}
+
+button:active:not(:disabled) {
+  transform: translateY(0);
+  box-shadow: 0 4px 10px -4px var(--shadow-color);
+}
+
+button:focus-visible {
+  outline: 2px solid #c026d3;
+  outline-offset: 2px;
+}
+
+button:disabled {
+  background: #ece6f1;
+  color: #b3a4c2;
+  box-shadow: none;
+  cursor: not-allowed;
+}
+
+/* secondary action, visually quieter than the primary flow */
+#sampleBtn {
+  background: var(--surface-soft);
+  color: #7c3aed;
+  border: 1.5px solid var(--border);
+  box-shadow: none;
+}
+
+#sampleBtn:hover:not(:disabled) {
+  background: var(--grad-soft);
+  box-shadow: none;
+}
+
+/* ---- validation errors ---- */
+
+.error-banner {
+  display: none;
+  align-items: center;
+  gap: 0.6rem;
+  margin-top: 1rem;
+  padding: 0.85rem 1.1rem;
+  border-radius: var(--radius-md);
+  background: #fdf2f4;
+  border: 1px solid #f6b8c9;
+  color: #9d174d;
+  font-size: 0.88rem;
+  font-weight: 600;
+}
+
+.error-banner.visible {
+  display: flex;
+  animation: error-pop 0.2s ease;
+}
+
+.error-banner .error-icon {
+  font-size: 1.05rem;
+  line-height: 1;
+}
+
+@keyframes error-pop {
+  from {
+    transform: translateY(-4px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+/* ---- panels: download / stats / code table share one card language ---- */
+
+#downloadSection,
+#stats,
+#codeTableDetails {
+  margin-top: 1.25rem;
+  padding: 1.1rem 1.3rem;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border);
+  background: var(--surface-soft);
+}
+
+#downloadNote {
+  margin: 0 0 0.75rem 0;
+  font-size: 0.88rem;
+  color: var(--ink);
+}
+
+#downloadNote:empty {
+  display: none;
+}
+
+#downloadSection:has(#downloadNote:empty) {
+  display: none;
+}
+
+#downloadSection button {
+  margin-bottom: 0;
+}
+
+/* ---- progress ---- */
+
+#progressBar {
+  width: 100%;
+  height: 8px;
+  border: none;
+  border-radius: 999px;
+  overflow: hidden;
+  margin-top: 1rem;
+  background: var(--surface-soft);
+}
+
+#progressBar::-webkit-progress-bar {
+  background: var(--border);
+  border-radius: 999px;
+}
+
+#progressBar::-webkit-progress-value {
+  background: var(--grad);
+  border-radius: 999px;
+  transition: width 0.2s ease;
+}
+
+#progressBar::-moz-progress-bar {
+  background: var(--grad);
+  border-radius: 999px;
+}
+
+#progressLabel {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #7c3aed;
+  margin: 0.5rem 0 0 0;
+}
+
+/* ---- stats ---- */
+
+#stats {
+  font-size: 0.88rem;
+}
+
+#stats p {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  margin: 0.4rem 0;
+  color: var(--ink-soft);
+}
+
+#stats span {
+  font-weight: 600;
+  color: var(--ink);
+  text-align: right;
+}
+
+/* ---- code table ---- */
+
+#codeTableDetails summary {
+  cursor: pointer;
+  font-weight: 700;
+  font-size: 0.9rem;
+  color: #7c3aed;
+  list-style: none;
+}
+
+#codeTableDetails summary::-webkit-details-marker {
+  display: none;
+}
+
+#codeTableDetails summary::before {
+  content: "▸";
+  display: inline-block;
+  width: 1em;
+  color: #db2777;
+  transition: transform 0.15s ease;
+}
+
+#codeTableDetails[open] summary::before {
+  transform: rotate(90deg);
+}
+
+#codeTableDetails[open] summary {
+  margin-bottom: 0.9rem;
+}
+
+#codeTable {
+  border-collapse: separate;
+  border-spacing: 0;
+  font-size: 0.82rem;
+  width: 100%;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  overflow: hidden;
+  background: var(--surface);
+}
+
+#codeTable th,
+#codeTable td {
+  padding: 0.45rem 0.75rem;
+  text-align: left;
+}
+
+#codeTable th {
+  background: var(--grad);
+  color: #fff;
+  font-weight: 600;
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+#codeTable tr:nth-child(even) td {
+  background: var(--surface-soft);
+}

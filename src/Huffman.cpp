@@ -4,34 +4,9 @@
 
 void Huffman::buildFrequencyTable(std::string inputFileContent) {
 
-    // If the frequency table is empty, initialize it with the first character from inputFileContent
-    if (frequencyTable.size() == 0) {
-        frequencyTable[inputFileContent[0]] = 1;
-    }
-
-    // Define an iterator for traversing the frequency table map
-    std::unordered_map<char, int>::iterator mapTracer;
-
-    // Loop through the remaining characters in inputFileContent, starting from index 1
-    for (int i = 1; i < inputFileContent.length(); i++) {
-        char selectedCharacter = inputFileContent[i];
-
-        // Initialize iterator to the beginning of the frequency table for each new character
-        mapTracer = frequencyTable.begin();
-
-        // Search the frequency table for the current character
-        while (mapTracer != frequencyTable.end()) {
-            // If character is found in the table, increment its frequency count
-            if (mapTracer->first == selectedCharacter) {
-                mapTracer->second++;
-                break; // Exit loop as character was found and updated
-            }
-            // If character is not in the table, insert it with an initial count of 1
-            else {
-                frequencyTable.insert({selectedCharacter, 1});
-            }
-            ++mapTracer;
-        }
+    // Count the occurrences of each character in inputFileContent
+    for (char selectedCharacter : inputFileContent) {
+        frequencyTable[selectedCharacter]++;
     }
 }
 

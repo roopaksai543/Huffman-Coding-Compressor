@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Huffman Coding Compressor</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <h1>Huffman Coding Compressor</h1>
+
+  <!-- pick a file -->
+  <input type="file" id="fileInput">
+
+  <!-- or use the bundled sample -->
+  <button id="sampleBtn">Use sample text instead</button>
+
+  <p id="filenameLabel"></p>
+
+  <!-- compress / decompress -->
+  <button id="compressBtn" disabled>Compress</button>
+  <button id="decompressBtn" disabled>Decompress</button>
+
+  <!-- validation errors (wrong file type, nothing loaded, etc.) -->
+  <div id="errorBanner" class="error-banner">
+    <span class="error-icon" aria-hidden="true">⚠</span>
+    <span id="errorText"></span>
+  </div>
+
+  <!-- shown once a compress/decompress has produced a file ready to save -->
+  <div id="downloadSection">
+    <p id="downloadNote"></p>
+    <button id="downloadBtn" disabled>Download</button>
+  </div>
+
+  <!-- progress bar, hidden until a compress/decompress is running -->
+  <progress id="progressBar" style="display:none;"></progress>
+  <p id="progressLabel" style="display:none;">Working...</p>
+
+  <!-- stats -->
+  <div id="stats">
+    <p>Original size: <span id="origSize">-</span></p>
+    <p>Compressed size: <span id="compSize">-</span></p>
+    <p>Saved: <span id="saved">-</span></p>
+    <p>Runtime: <span id="runtime">-</span></p>
+    <p>Character count: <span id="charCount">-</span></p>
+    <p>Most frequent char / shortest code: <span id="shortestCode">-</span></p>
+    <p>Least frequent char / longest code: <span id="longestCode">-</span></p>
+    <p>Round-trip check: <span id="verify">-</span></p>
+  </div>
+
+  <!-- full code table -->
+  <details id="codeTableDetails">
+    <summary>Code table</summary>
+    <table id="codeTable" border="1" cellpadding="4">
+      <tr><th>Character</th><th>Frequency</th><th>Code</th></tr>
+    </table>
+  </details>
+
+  <!-- load the wasm glue code, then your own script -->
+  <script src="huffman.js"></script>
+  <script src="script.js"></script>
+
+</body>
+</html>
